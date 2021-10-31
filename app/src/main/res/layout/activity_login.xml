@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_light"
+            android:text="Already Have an account?"
+            android:textAlignment="center"
+            android:textColor="@color/material_blue_grey_80"
+            android:textSize="30sp" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+
+            android:id="@+id/loading"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/register"
+            app:lottie_renderMode="automatic" />
+
+
+    </LinearLayout>
+
+   <LinearLayout
+
+        android:layout_marginLeft="30dp"
+       android:layout_marginRight="30dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_below="@+id/header">
+
+
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/userlayout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:hintEnabled="true"
+          android:hint="Username"
+          app:boxBackgroundMode="none">
+
+          <com.google.android.material.textfield.TextInputEditText
+              android:layout_width="match_parent"
+              android:background="@drawable/rounded"
+              android:layout_height="60dp"
+              android:inputType="text"
+              android:singleLine="true"
+              android:drawablePadding="10dp"
+              android:drawableLeft="@drawable/icons8_user_male"
+              android:id="@+id/username"/>
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/passwordlayout"
+           android:layout_marginTop="10dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:boxBackgroundMode="none"
+           app:startIconDrawable="@drawable/icons8_lock_3"
+           app:hintAnimationEnabled="true"
+           app:passwordToggleEnabled="true">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:layout_width="match_parent"
+               android:background="@drawable/rounded"
+               android:layout_height="60dp"
+               android:singleLine="true"
+               android:inputType="textPassword"
+               tools:text="Password"
+               android:hint="Password"
+               android:drawableLeft="@drawable/icons8_lock_3"
+               android:id="@+id/password"
+               android:drawablePadding="1dp"/>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/login"
+           app:cornerRadius="20dp"
+           android:backgroundTint="#50ADBD"
+           android:layout_marginTop="10dp"
+           android:layout_width="140dp"
+           android:layout_height="wrap_content"
+           android:text="Login"
+           app:iconSize="15dp"
+           app:iconGravity="textStart"
+           app:icon="@drawable/icons8_enter"
+           android:layout_gravity="center"/>
+
+       <TextView
+           android:onClick="register"
+           android:fontFamily="@font/poppins_light"
+           android:textStyle="bold"
+           android:textColor="#0097A7"
+           android:textSize="18sp"
+           android:layout_marginTop="10dp"
+           android:textAlignment="center"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/new_user_register_now"
+           tools:ignore="OnClick" />
+
+   </LinearLayout>
+
+
+
+
+</RelativeLayout>

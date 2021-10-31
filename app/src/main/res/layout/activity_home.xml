@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/flContent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/menu"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Menu"
+                    app:icon="@drawable/icons8_menu_1" />
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/addcart" />
+
+
+                <TextView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:textColor="#fff" />
+
+
+
+
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icons8_male_user_1"/>
+
+                <TextView
+                    android:id="@+id/fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginRight="65dp"
+                    android:textSize="18sp"
+                    tools:text="@tools:sample/full_names" />
+
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:drawableLeft="@drawable/icons8_search_2"
+                    android:drawablePadding="10dp"
+                    android:hint="Search Category"
+                    android:singleLine="true" />
+
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading"
+                    app:lottie_renderMode="automatic" />
+
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:layout_below="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/swipe">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/category_list" />
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_margin="50dp"
+            app:elevation="10dp"
+            app:itemIconPadding="10dp"
+            app:itemIconSize="20dp"
+            app:itemHorizontalPadding="20dp"
+            app:itemIconTint="@color/purple_500"
+            app:itemTextColor="@color/black"
+            android:foreground="?attr/selectableItemBackground"
+            android:id="@+id/nvView"
+            app:headerLayout="@layout/navigation_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:layout_gravity="start"
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/white"
+            app:menu="@menu/menu_item" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</RelativeLayout>
