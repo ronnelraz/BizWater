@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.bizwater.Model.m_categories;
 import com.example.bizwater.adapter.Adapter_categories;
+import com.example.bizwater.connection.con_cartCount;
 import com.example.bizwater.connection.con_categories;
 import com.example.bizwater.func.Func;
 import com.google.android.material.button.MaterialButton;
@@ -59,6 +61,7 @@ public class Home extends AppCompatActivity {
     DrawerLayout drawerLayout;
     @BindView(R.id.nvView)
     NavigationView navigationView;
+    @BindView(R.id.countItem) TextView countItem;
 
 
     public static RecyclerView recyclerView;
@@ -70,6 +73,9 @@ public class Home extends AppCompatActivity {
     SwipeRefreshLayout swipe;
     @BindView(R.id.search)
     EditText search;
+
+    @BindView(R.id.mycard)
+    ImageView mycart;
 
 
 
@@ -127,25 +133,12 @@ public class Home extends AppCompatActivity {
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
                 ArrayList<m_categories> newList = new ArrayList<>();
                 for (m_categories sub : list)
                 {
                     String name = sub.getName().toLowerCase();
                     if(name.contains(s)){
                         newList.add(sub);
-                        loading.setVisibility(View.GONE);
-                    }
-                    else{
-
-                        loading.setVisibility(View.VISIBLE);
-                        loading.setAnimation(R.raw.not_found);
-                        loading.playAnimation();
-                        loading.loop(true);
                     }
                     adapter = new Adapter_categories(newList, getApplicationContext());
                     recyclerView.setAdapter(adapter);
@@ -154,12 +147,20 @@ public class Home extends AppCompatActivity {
             }
 
             @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
             public void afterTextChanged(Editable editable) {
 
             }
         });
 
-
+        cartCount(); //load countItem
+        mycart.setOnClickListener(v->{
+            Func.intent(Mycart.class,v.getContext());
+        });
     }
 
     public void onLoadComplete(){
@@ -168,10 +169,36 @@ public class Home extends AppCompatActivity {
     }
 
 
+    public void cartCount(){
+        Response.Listener<String> response = response1 -> {
+            try {
+                JSONObject jsonResponse = new JSONObject(response1);
+                boolean success = jsonResponse.getBoolean("success");
+                String count = jsonResponse.getString("count");
+
+                if(success){
+                   countItem.setText(count);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        };
+        Response.ErrorListener errorListener = error -> {
+            String result = controller.Errorvolley(error);
+        };
+        con_cartCount get = new con_cartCount(controller.USERID(),response,errorListener);
+        RequestQueue queue = Volley.newRequestQueue(Home.this);
+        queue.add(get);
+    }
+
+
     private void MenuItem() {
         navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
-
+                case R.id.MyCart:
+                    Func.intent(Mycart.class,Home.this);
+                    break;
                 case R.id.Logout:
                     new SweetAlertDialog(Home.this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Are you sure?")

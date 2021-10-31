@@ -3,16 +3,11 @@ package com.example.bizwater.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,11 +21,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.bizwater.Model.m_categories;
+import com.example.bizwater.Model.m_mycart;
 import com.example.bizwater.Model.m_product;
 import com.example.bizwater.R;
 import com.example.bizwater.connection.con_product;
 import com.example.bizwater.connection.config;
-import com.example.bizwater.func.Func;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
@@ -46,9 +41,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.ViewHolder> {
+public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHolder> {
     Context mContext;
-    List<m_categories> newsList;
+    List<m_mycart> newsList;
 
 
     private BottomSheetBehavior bottomSheetBehavior;
@@ -58,7 +53,7 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
 
 
 
-    public Adapter_categories(List<m_categories> list, Context context) {
+    public Adapter_mycart(List<m_mycart> list, Context context) {
         super();
         this.newsList = list;
         this.mContext = context;
@@ -68,7 +63,7 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pending_order,parent,false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -76,10 +71,13 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        final m_categories getData = newsList.get(position);
+        final m_mycart getData = newsList.get(position);
 
 
-        holder.name.setText(getData.getName());
+        holder.name.setText("Item: "+getData.getName());
+        holder.price.setText("Price: ₱" +getData.getPrice());
+        holder.qty.setText("Qty: "+getData.getQty()+"x");
+        holder.subtotal.setText("Sub Total: ₱" +getData.getTotal());
         Picasso.get().load(config.IMGURL + getData.img).into(holder.item, new Callback() {
             @Override
             public void onSuccess() {
@@ -94,87 +92,7 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
             }
         });
 
-        holder.card.setOnClickListener(v -> {
 
-            View view = LayoutInflater.from(v.getContext()).inflate(R.layout.bottomsheet_items,null);
-
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(v.getContext(),R.style.BottomSheetDialog);
-
-
-            LinearLayout linearLayout = view.findViewById(R.id.root);
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
-            params.height = getScreenHeight();
-            linearLayout.setLayoutParams(params);
-
-            MaterialButton back = view.findViewById(R.id.back);
-            back.setOnClickListener(v1 -> {
-                list.clear();
-                bottomSheetDialog.dismiss();
-            });
-            TextInputEditText search = view.findViewById(R.id.search);
-            LottieAnimationView loading = view.findViewById(R.id.loading);
-            RecyclerView rviewbottom = view.findViewById(R.id.data);
-            SwipeRefreshLayout swipe = view.findViewById(R.id.swipe);
-
-
-            rviewbottom.setHasFixedSize(true);
-            rviewbottom.setItemViewCacheSize(999999999);
-
-            list = new ArrayList<>();
-            rviewbottom.setLayoutManager(new GridLayoutManager(view.getContext(),2));
-            adapter = new Adapter_product(list,view.getContext());
-            rviewbottom.setAdapter(adapter);
-
-
-            loading.setVisibility(View.VISIBLE);
-
-            swipe.setOnRefreshListener(() -> {
-                list.clear();
-                loadData(view.getContext(),rviewbottom,getData.getId(),loading);
-                swipe.setRefreshing(false);
-            });
-
-            swipe.setColorSchemeResources(android.R.color.holo_blue_bright,
-                    android.R.color.holo_green_light,
-                    android.R.color.holo_orange_light,
-                    android.R.color.holo_red_light);
-
-            search.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    ArrayList<m_product> newListbottom = new ArrayList<>();
-                    for (m_product sub : list)
-                    {
-                        String name = sub.getName().toLowerCase();
-                        if(name.contains(s)){
-                            newListbottom.add(sub);
-                        }
-                        adapter = new Adapter_product(newListbottom,view.getContext());
-                        rviewbottom.setAdapter(adapter);
-
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
-
-            loadData(view.getContext(),rviewbottom,getData.getId(),loading);
-
-            bottomSheetDialog.setContentView(view);
-            bottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            bottomSheetDialog.show();
-
-
-        });//end
 
     }
 
@@ -225,9 +143,6 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
 
     }
 
-    public static int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
-    }
 
     @Override
     public int getItemCount() {
@@ -237,17 +152,18 @@ public class Adapter_categories extends RecyclerView.Adapter<Adapter_categories.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-       public TextView name;
-       public ImageView item;
-       public MaterialCardView card;
-       public LottieAnimationView loading;
+        public ImageView item;
+        public LottieAnimationView loading;
+        public TextView name,price,qty,subtotal;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            item= itemView.findViewById(R.id.item);
-            card = itemView.findViewById(R.id.card);
+            item = itemView.findViewById(R.id.img);
             loading = itemView.findViewById(R.id.loading);
+            name = itemView.findViewById(R.id.productname);
+            price = itemView.findViewById(R.id.price);
+            qty = itemView.findViewById(R.id.qty);
+            subtotal = itemView.findViewById(R.id.subtotal);
 
 
         }

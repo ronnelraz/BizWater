@@ -55,5 +55,7 @@ dependencies {
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.novoda:merlin:1.2.0'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    implementation 'com.daimajia.swipelayout:library:1.2.0'
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Mycart">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/icons8_back"
+        android:id="@+id/back"
+        android:text="Go Back"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/back"
+        android:text="Order Summary"
+        android:textSize="25sp"
+        android:id="@+id/summary"
+        android:fontFamily="@font/poppins_light"/>
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/summary"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/poppins_light"
+        android:textSize="18sp"
+        tools:text="total Order: 00000.00" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/total"
+        android:layout_marginBottom="50dp"
+        tools:listitem="@layout/pending_order"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ordernow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Order Now"
+        app:cornerRadius="10dp"
+        android:layout_margin="10dp"
+        app:icon="@drawable/icons8_ok_1"
+        app:iconGravity="textStart" />
+
+
+
+</RelativeLayout>

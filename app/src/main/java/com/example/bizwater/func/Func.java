@@ -23,6 +23,7 @@ import com.example.bizwater.R;
 import com.novoda.merlin.Merlin;
 
 import java.security.PublicKey;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import butterknife.Action;
@@ -86,6 +87,11 @@ public class Func {
         return true;
     }
 
+    public String numberformat(int number){
+        DecimalFormat formatter = new DecimalFormat("#,###,###");
+        return formatter.format(number);
+    }
+
     public String LOGINVAL(){
         sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
         return sharedPreferences.getString(LOGIN,"wala");
@@ -94,6 +100,11 @@ public class Func {
     public String FULLNAME(){
         sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
         return sharedPreferences.getString(FIRSTNAME,"") + " " + sharedPreferences.getString(LASTNAME,"");
+    }
+
+    public String USERID(){
+        sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(ID,"");
     }
 
 
