@@ -4,11 +4,19 @@ package com.example.bizwater;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.SystemClock;
+import android.text.BoringLayout;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +35,7 @@ public class Simulation extends AppCompatActivity {
 
     SurfaceView surfaceView;
     CustomViewer customViewer;
+    MotionEvent motionEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,10 @@ public class Simulation extends AppCompatActivity {
         customViewer.loadIndirectLight(this,"venetian_crossroads_2k");
 
     }
+
+
+
+
 
     @Override
     protected void onResume() {

@@ -2,6 +2,7 @@ package com.example.bizwater
 
 import android.content.Context
 import android.view.Choreographer
+import android.view.MotionEvent
 import android.view.SurfaceView
 import com.google.android.filament.Skybox
 import com.google.android.filament.utils.KtxLoader
@@ -24,6 +25,8 @@ class CustomViewer {
     {
         choreographer = Choreographer.getInstance()
     }
+
+
 
     fun setSurfaceView(mSurfaceView: SurfaceView)
     {
@@ -49,16 +52,6 @@ class CustomViewer {
         modelViewer.transformToUnitCube()
     }
 
-//    fun loadGltf(context: Context, name: String)
-//    {
-//        val buffer = context.assets.open("model/${name}.gltf").use { input ->
-//            val bytes = ByteArray(input.available())
-//            input.read(bytes)
-//            ByteBuffer.wrap(bytes)
-//        }
-//        modelViewer.loadModelGltf(buffer){ uri -> readAsset(context, "model/$uri") }
-//        modelViewer.transformToUnitCube()
-//    }
 
     fun loadGltf(context: Context, dirName: String, name: String)
     {
@@ -89,6 +82,8 @@ class CustomViewer {
             modelViewer.scene.skybox = this
         }
     }
+
+
 
     private fun readAsset(context: Context, assetName: String): ByteBuffer
     {

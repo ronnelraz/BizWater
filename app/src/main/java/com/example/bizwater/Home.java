@@ -207,6 +207,9 @@ public class Home extends AppCompatActivity {
                 case  R.id.Simulation:
                     Func.intent(Simulation.class,Home.this);
                     break;
+                case  R.id.support:
+                    Func.intent(TechSupport.class,Home.this);
+                    break;
                 case R.id.Logout:
                     new SweetAlertDialog(Home.this, SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Are you sure?")
