@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,7 +66,7 @@ public class Adapter_product extends RecyclerView.Adapter<Adapter_product.ViewHo
 
 
         holder.name.setText(getData.getName());
-        holder.price.setText("₱" + getData.getPrice());
+        holder.price.setText("₱" + Func.getInstance(mContext).numberformat(Float.parseFloat(getData.getPrice())));
         holder.stock.setText("Available Stock : " + getData.getQty());
 
 
@@ -86,9 +87,14 @@ public class Adapter_product extends RecyclerView.Adapter<Adapter_product.ViewHo
                 Func.getInstance(view.getContext()).toast(R.raw.error_con,"Sorry your order Quantity is more than available Stocks", Gravity.TOP|Gravity.CENTER,0,50);
             }
             else{
-                totalOrder.set(String.valueOf(Double.valueOf(getData.getPrice()) * newValue));
+
+                totalOrder.set(String.valueOf(Float.parseFloat(getData.getPrice()) * newValue));
                 holder.addtocart.setEnabled(true);
             }
+        });
+
+        holder.card.setOnClickListener(v -> {
+
         });
 
 

@@ -24,7 +24,9 @@ import com.example.bizwater.adapter.Adapter_categories;
 import com.example.bizwater.adapter.Adapter_mycart;
 import com.example.bizwater.connection.con_categories;
 import com.example.bizwater.connection.con_getmycart;
+import com.example.bizwater.connection.con_orderSubmit;
 import com.example.bizwater.func.Func;
+import com.google.android.material.button.MaterialButton;
 import com.novoda.merlin.Merlin;
 
 import org.json.JSONArray;
@@ -47,6 +49,10 @@ public class Mycart extends AppCompatActivity {
     private String transactionID = "";
     @BindView(R.id.total)
     TextView Total;
+
+    @BindView(R.id.back)
+    MaterialButton back;
+    @BindView(R.id.ordernow) MaterialButton ordernow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,43 @@ public class Mycart extends AppCompatActivity {
             no_connection();
             controller.toast(R.raw.error_con,"No Internet Connection",Gravity.TOP|Gravity.CENTER,0,50);
         });
+
+        back.setOnClickListener(v ->{
+            Func.intent(Home.class,this);
+            finish();
+        });
+
+        ordernow.setOnClickListener(v -> {
+            Response.Listener<String> response = response1 -> {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response1);
+                    boolean success = jsonResponse.getBoolean("success");
+                    String msg = jsonResponse.getString("message");
+
+                    if(success){
+
+                        Func.intent(Home.class,v.getContext());
+                        finish();
+                        controller.toast(R.raw.ok,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                    }
+                    else{
+                        Func.intent(Home.class,v.getContext());
+                        finish();
+                        controller.toast(R.raw.error_con,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            };
+            Response.ErrorListener errorListener = error -> {
+                String result = controller.Errorvolley(error);
+            controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
+            };
+            con_orderSubmit get = new con_orderSubmit(transactionID,controller.USERID(),response,errorListener);
+            RequestQueue queue = Volley.newRequestQueue(Mycart.this);
+            queue.add(get);
+        });
     }
 
 
@@ -87,6 +130,7 @@ public class Mycart extends AppCompatActivity {
         loading.setAnimation(R.raw.lose);
         loading.playAnimation();
         loading.loop(true);
+        ordernow.setEnabled(false);
     }
 
 
@@ -104,6 +148,7 @@ public class Mycart extends AppCompatActivity {
 
 
                     if(success){
+                        ordernow.setEnabled(true);
                         loading.setVisibility(View.GONE);
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
@@ -122,6 +167,12 @@ public class Mycart extends AppCompatActivity {
                         adapter = new Adapter_mycart(list,getApplicationContext());
                         recyclerView.setAdapter(adapter);
                     }
+                    else{
+                        ordernow.setEnabled(false);
+                        loading.setAnimation(R.raw.not_found);
+                        loading.playAnimation();
+                        loading.loop(true);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -130,7 +181,8 @@ public class Mycart extends AppCompatActivity {
             Response.ErrorListener errorListener = error -> {
                 String result = controller.Errorvolley(error);
 //            controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
-                loading.setVisibility(View.VISIBLE);
+//                loading.setVisibility(View.GONE);
+                no_connection();
             };
             con_getmycart get = new con_getmycart(controller.USERID(),response,errorListener);
             RequestQueue queue = Volley.newRequestQueue(Mycart.this);
@@ -139,6 +191,8 @@ public class Mycart extends AppCompatActivity {
             Log.d("Error",e.toString());
         }
     }
+
+
 
 
     @Override

@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
     <application
         android:allowBackup="true"
@@ -16,6 +18,12 @@
         android:theme="@style/Theme.Bizwater"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity
+            android:name=".Simulation"
+            android:exported="true" />
+        <activity
+            android:name=".MyOrder"
+            android:exported="true" />
         <activity
             android:name=".Mycart"
             android:exported="true" />
@@ -37,6 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.ar.core" android:value="optional" />
 
         <service
             android:name="com.novoda.merlin.MerlinService"

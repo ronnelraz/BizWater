@@ -2,15 +2,18 @@ package com.example.bizwater.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,12 +23,17 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.swipe.SwipeLayout;
+import com.example.bizwater.Home;
 import com.example.bizwater.Model.m_categories;
 import com.example.bizwater.Model.m_mycart;
 import com.example.bizwater.Model.m_product;
+import com.example.bizwater.Mycart;
 import com.example.bizwater.R;
 import com.example.bizwater.connection.con_product;
+import com.example.bizwater.connection.con_removeCart;
 import com.example.bizwater.connection.config;
+import com.example.bizwater.func.Func;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
@@ -92,41 +100,35 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
             }
         });
 
+        holder.trash.setOnClickListener(v -> {
+            if(getItemCount() == 1){
+                removeItemList(v, getData.getId());
+                Func.intent(Home.class,v.getContext());
+            }else{
+                removeItemList(v, getData.getId());
+            }
+
+
+        });
+
 
 
     }
 
-    private void loadData(Context context, RecyclerView rviewbottom, String id,LottieAnimationView loading) {
-        list.clear();
-        adapter.notifyDataSetChanged();
+
+    private void removeItemList(View v, String id){
         Response.Listener<String> response = response1 -> {
             try {
                 JSONObject jsonResponse = new JSONObject(response1);
                 boolean success = jsonResponse.getBoolean("success");
-                JSONArray array = jsonResponse.getJSONArray("data");
 
                 if(success){
-                    loading.setVisibility(View.GONE);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject object = array.getJSONObject(i);
-
-                        m_product item = new m_product(
-                                object.getString("id"),
-                                object.getString("name"),
-                                object.getString("price"),
-                                object.getString("qty"),
-                                object.getString("des"),
-                                object.getString("img"),
-                                object.getString("flg")
-                        );
-                        list.add(item);
-
-                    }
-                    adapter = new Adapter_product(list,context);
-                    rviewbottom.setAdapter(adapter);
+                    ((Mycart)v.getContext()).loadCart();
+                    Func.getInstance(v.getContext()).toast(R.raw.ok,"Item Removed", Gravity.TOP|Gravity.CENTER,0,50);
                 }
                 else{
-                    loading.setAnimation(R.raw.not_found);
+                    ((Mycart)v.getContext()).loadCart();
+                    Func.getInstance(v.getContext()).toast(R.raw.error_con,"Something went wrong. Try again later.", Gravity.TOP|Gravity.CENTER,0,50);
                 }
 
 
@@ -137,10 +139,9 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
         Response.ErrorListener errorListener = error -> {
 
         };
-        con_product get = new con_product(id,response,errorListener);
-        RequestQueue queue = Volley.newRequestQueue(context);
+        con_removeCart get = new con_removeCart(id,response,errorListener);
+        RequestQueue queue = Volley.newRequestQueue(v.getContext());
         queue.add(get);
-
     }
 
 
@@ -155,6 +156,8 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
         public ImageView item;
         public LottieAnimationView loading;
         public TextView name,price,qty,subtotal;
+        public SwipeLayout swipe;
+        public LinearLayout trash;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -164,6 +167,8 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
             price = itemView.findViewById(R.id.price);
             qty = itemView.findViewById(R.id.qty);
             subtotal = itemView.findViewById(R.id.subtotal);
+            swipe = itemView.findViewById(R.id.swipe);
+            trash = itemView.findViewById(R.id.cancelitem);
 
 
         }

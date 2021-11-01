@@ -5,14 +5,14 @@
         <item
             android:id="@+id/MyCart"
             android:title="My Cart"
-            android:icon="@drawable/myorder"
+            android:icon="@drawable/addcart"
             android:iconTint="#0288D1"
             app:showAsAction="never"/>
 
         <item
             android:id="@+id/MyOrder"
             android:title="My Order"
-            android:icon="@drawable/addcart"
+            android:icon="@drawable/myorder"
             android:iconTint="#0288D1"
             app:showAsAction="never"/>
 

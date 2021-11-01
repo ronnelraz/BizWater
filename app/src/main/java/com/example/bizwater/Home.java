@@ -104,12 +104,14 @@ public class Home extends AppCompatActivity {
         //check connected
         controller.merlin.registerConnectable(() -> {
             loadCategories();
+            cartCount();
             controller.toast(R.raw.wifi,"Connecting to the server...",Gravity.TOP|Gravity.CENTER,0,50);
         });
         //check diconnected
         controller.merlin.registerDisconnectable(() -> {
             loadCategories();
             no_connection();
+            cartCount();
             controller.toast(R.raw.error_con,"No Internet Connection",Gravity.TOP|Gravity.CENTER,0,50);
         });
 
@@ -198,6 +200,12 @@ public class Home extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.MyCart:
                     Func.intent(Mycart.class,Home.this);
+                    break;
+                case R.id.MyOrder:
+                    Func.intent(MyOrder.class,Home.this);
+                    break;
+                case  R.id.Simulation:
+                    Func.intent(Simulation.class,Home.this);
                     break;
                 case R.id.Logout:
                     new SweetAlertDialog(Home.this, SweetAlertDialog.WARNING_TYPE)

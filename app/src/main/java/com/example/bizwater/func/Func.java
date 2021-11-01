@@ -24,6 +24,7 @@ import com.novoda.merlin.Merlin;
 
 import java.security.PublicKey;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.Action;
@@ -87,8 +88,11 @@ public class Func {
         return true;
     }
 
-    public String numberformat(int number){
-        DecimalFormat formatter = new DecimalFormat("#,###,###");
+    public String numberformat(float number){
+//        DecimalFormat formatter = new DecimalFormat("#,###,###");
+//        return formatter.format(number);
+
+        NumberFormat formatter = new DecimalFormat("#0.00");
         return formatter.format(number);
     }
 

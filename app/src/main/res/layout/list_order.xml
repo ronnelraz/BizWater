@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    android:elevation="10dp"
+    android:id="@+id/card"
+    app:cardMaxElevation="10dp">
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/transaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Transaction No."
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"/>
+
+        <TextView
+            android:layout_below="@+id/transaction"
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order Date"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"/>
+
+
+        <ImageView
+            android:id="@+id/status"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/icons8_data_pending" />
+
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
