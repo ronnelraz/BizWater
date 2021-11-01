@@ -46,12 +46,16 @@ public class Simulation extends AppCompatActivity {
         ButterKnife.bind(this);
         controller = new Func(this);
 
-        surfaceView = findViewById(R.id.surface);
-        customViewer = new CustomViewer();
-        customViewer.loadEntity();
-        customViewer.setSurfaceView(surfaceView);
-        customViewer.loadGlb(this, "grogu", "rr");
-        customViewer.loadIndirectLight(this,"venetian_crossroads_2k");
+      try{
+          surfaceView = findViewById(R.id.surface);
+          customViewer = new CustomViewer();
+          customViewer.loadEntity();
+          customViewer.setSurfaceView(surfaceView);
+          customViewer.loadGlb(this, "grogu", "rr");
+          customViewer.loadIndirectLight(this,"venetian_crossroads_2k");
+      }catch (Exception e){
+
+      }
 
     }
 
