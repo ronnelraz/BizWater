@@ -88,6 +88,7 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
         controller = new Func(this);
         fullname.setText(controller.FULLNAME());
+
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.data);
         recyclerView.setHasFixedSize(true);
