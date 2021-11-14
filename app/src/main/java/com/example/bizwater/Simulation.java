@@ -2,6 +2,9 @@ package com.example.bizwater;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.annotation.SuppressLint;
@@ -23,7 +26,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.bizwater.Model.m_categories;
+import com.example.bizwater.Model.m_simulation;
+import com.example.bizwater.adapter.Adapter_categories;
+import com.example.bizwater.adapter.Adapter_simulation;
 import com.example.bizwater.func.Func;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -35,7 +45,38 @@ public class Simulation extends AppCompatActivity {
 
     SurfaceView surfaceView;
     CustomViewer customViewer;
-    MotionEvent motionEvent;
+
+    public static RecyclerView recyclerView;
+    public static RecyclerView.Adapter adapter;
+    public static List<m_simulation> simulation_list = new ArrayList<>();
+    public static int[] img = {
+            R.drawable.pic1,
+            R.drawable.pic2,
+            R.drawable.pic3,
+            R.drawable.pic4,
+            R.drawable.pic5,
+            R.drawable.pic6,
+            R.drawable.pic7,
+            R.drawable.pic8,
+            R.drawable.pic9,
+            R.drawable.pic10,
+            R.drawable.pic11
+    };
+
+    public static String[] name = {
+            "10 uM Slim",
+            "Raw Water Storage Tank",
+            "Booster Pump",
+            "Multimedia, Carbon and Water Softener",
+            "Brine Tank",
+            "5uM Slim, 1uM Slim",
+            "Membrane",
+            "Product Tank",
+            "1uM Slim, CTO Slim",
+            "UV Lamp Sterilizer",
+            "Dispensing Unit"
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +97,21 @@ public class Simulation extends AppCompatActivity {
       }catch (Exception e){
 
       }
+
+      for(int i = 0; i < img.length; i++){
+          m_simulation item = new m_simulation(
+                 img[i],
+                 name[i]
+          );
+          simulation_list.add(item);
+      }
+
+        recyclerView = findViewById(R.id.data);
+        recyclerView.setHasFixedSize(false);
+        recyclerView.setItemViewCacheSize(999999999);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        adapter = new Adapter_simulation(simulation_list,getApplicationContext());
+        recyclerView.setAdapter(adapter);
 
     }
 
