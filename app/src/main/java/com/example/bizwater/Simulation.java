@@ -7,23 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.opengl.EGLConfig;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
+import android.os.Build;
 import android.os.Bundle;
 
-import android.os.SystemClock;
-import android.text.BoringLayout;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
+
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.bizwater.Model.m_categories;
@@ -32,9 +29,22 @@ import com.example.bizwater.adapter.Adapter_categories;
 import com.example.bizwater.adapter.Adapter_simulation;
 import com.example.bizwater.func.Func;
 
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import javax.microedition.khronos.opengles.GL10;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Simulation extends AppCompatActivity {
@@ -45,6 +55,8 @@ public class Simulation extends AppCompatActivity {
 
     SurfaceView surfaceView;
     CustomViewer customViewer;
+
+
 
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter adapter;
@@ -78,6 +90,10 @@ public class Simulation extends AppCompatActivity {
     };
 
 
+    @BindView(R.id.webview)
+    WebView webview;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +102,7 @@ public class Simulation extends AppCompatActivity {
         setContentView(R.layout.activity_simulation);
         ButterKnife.bind(this);
         controller = new Func(this);
+
 
       try{
           surfaceView = findViewById(R.id.surface);
@@ -112,6 +129,29 @@ public class Simulation extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         adapter = new Adapter_simulation(simulation_list,getApplicationContext());
         recyclerView.setAdapter(adapter);
+
+
+        webview.performClick();
+
+        if (Build.VERSION.SDK_INT >= 19) {
+            webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            WebSettings webSettings = webview.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setUseWideViewPort(true);
+            webSettings.setLoadWithOverviewMode(true);
+            webview.loadUrl("http://192.168.1.36/systemwatech/");
+        }
+        else {
+            webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            WebSettings webSettings = webview.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setUseWideViewPort(true);
+            webSettings.setLoadWithOverviewMode(true);
+            webview.loadUrl("http://192.168.1.36/systemwatech/");
+        }
+
+
+
 
     }
 
