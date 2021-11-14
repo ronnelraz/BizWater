@@ -1,7 +1,7 @@
 package com.example.bizwater;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -15,15 +15,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.bizwater.Model.m_categories;
-import com.example.bizwater.Model.m_order;
-import com.example.bizwater.Model.m_support;
-import com.example.bizwater.adapter.Adapter_categories;
-import com.example.bizwater.adapter.Adapter_order;
-import com.example.bizwater.adapter.Adapter_tech;
-import com.example.bizwater.connection.con_categories;
-import com.example.bizwater.connection.con_getMyorder;
-import com.example.bizwater.connection.con_techSupport;
+import com.example.bizwater.Model.m_mycart;
+import com.example.bizwater.Model.m_request_support;
+import com.example.bizwater.adapter.Adapter_mycart;
+import com.example.bizwater.adapter.Adapter_request_tech;
+import com.example.bizwater.connection.con_getmycart;
+import com.example.bizwater.connection.con_request_tech;
 import com.example.bizwater.func.Func;
 import com.novoda.merlin.Merlin;
 
@@ -37,12 +34,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TechSupport extends AppCompatActivity {
-    Func controller;
+public class View_request extends AppCompatActivity {
 
+    Func controller;
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter adapter;
-    public static List<m_support> list;
+    public static List<m_request_support> list;
     @BindView(R.id.loading)
     LottieAnimationView loading;
 
@@ -51,43 +48,44 @@ public class TechSupport extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_tech_support);
+        setContentView(R.layout.activity_view_request);
         ButterKnife.bind(this);
         controller = new Func(this);
-
         list = new ArrayList<>();
         recyclerView = findViewById(R.id.data);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(999999999);
 
         list = new ArrayList<>();
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        adapter = new Adapter_tech(list,getApplicationContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new Adapter_request_tech(list,getApplicationContext());
         recyclerView.setAdapter(adapter);
+
 
         controller.merlin = new Merlin.Builder().withAllCallbacks().build(this);
         //check connected
         controller.merlin.registerConnectable(() -> {
-            loadtech();
+            loadquest();
             controller.toast(R.raw.wifi,"Connecting to the server...", Gravity.TOP|Gravity.CENTER,0,50);
         });
         //check diconnected
         controller.merlin.registerDisconnectable(() -> {
-            loadtech();
+            loadquest();
             no_connection();
             controller.toast(R.raw.error_con,"No Internet Connection",Gravity.TOP|Gravity.CENTER,0,50);
         });
+
     }
 
+
     protected void no_connection(){
-        loading.setVisibility(View.VISIBLE);
         loading.setAnimation(R.raw.lose);
         loading.playAnimation();
         loading.loop(true);
     }
 
 
-    public void loadtech(){
+    public void loadquest(){
         try{
             list.clear();
             Response.Listener<String> response = response1 -> {
@@ -102,20 +100,19 @@ public class TechSupport extends AppCompatActivity {
                         loading.setVisibility(View.GONE);
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
-
-                            m_support item = new m_support(
+                            m_request_support item = new m_request_support(
                                     object.getString("id"),
                                     object.getString("name"),
-                                    object.getString("contact"),
-                                    object.getString("address"),
                                     object.getString("img"),
+                                    object.getString("problem"),
+                                    object.getString("date"),
                                     object.getString("flag")
                             );
 
                             list.add(item);
                         }
 
-                        adapter = new Adapter_tech(list,getApplicationContext());
+                        adapter = new Adapter_request_tech(list,getApplicationContext());
                         recyclerView.setAdapter(adapter);
                     }
                     else{
@@ -130,10 +127,12 @@ public class TechSupport extends AppCompatActivity {
             };
             Response.ErrorListener errorListener = error -> {
                 String result = controller.Errorvolley(error);
-//                no_connection();
+//            controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
+//                loading.setVisibility(View.GONE);
+                no_connection();
             };
-            con_techSupport get = new con_techSupport(response,errorListener);
-            RequestQueue queue = Volley.newRequestQueue(TechSupport.this);
+            con_request_tech get = new con_request_tech(response,errorListener);
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
             queue.add(get);
         }catch (Exception e){
             Log.d("Error",e.toString());
@@ -141,15 +140,7 @@ public class TechSupport extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
 
-    public void back(View view) {
-        Func.intent(Home.class,this);
-    }
 
     @Override
     protected void onResume() {
@@ -163,8 +154,7 @@ public class TechSupport extends AppCompatActivity {
         super.onPause();
     }
 
-
-    public void viewrequest(View view) {
-        Func.intent(View_request.class,view.getContext());
+    public void back(View view) {
+        Func.intent(TechSupport.class,view.getContext());
     }
 }

@@ -49,7 +49,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/back"
-        android:onClick="back"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +56,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:onClick="back"
         android:text="Go back"
         app:cornerRadius="20dp"
         app:icon="@drawable/icons8_back" />
@@ -76,13 +76,22 @@
         app:lottie_renderMode="automatic" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
-        tools:listitem="@layout/list_support"
+        android:layout_marginBottom="55dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:itemCount="2"
-        android:id="@+id/data"/>
+        tools:listitem="@layout/list_support" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="View Request"
+        android:onClick="viewrequest"/>
 
 </RelativeLayout>

@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".View_request"
+            android:exported="true" />
+        <activity
             android:name=".TechSupport"
             android:exported="true" />
         <activity
