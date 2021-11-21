@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -83,6 +85,36 @@ public class MyOrder extends AppCompatActivity {
             no_connection();
             controller.toast(R.raw.error_con,"No Internet Connection",Gravity.TOP|Gravity.CENTER,0,50);
         });
+
+
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                ArrayList<m_order> newList = new ArrayList<>();
+                for (m_order sub : list)
+                {
+                    String name = sub.getId().toLowerCase();
+                    if(name.contains(s)){
+                        newList.add(sub);
+                    }
+                    adapter = new Adapter_order(newList, getApplicationContext());
+                    recyclerView.setAdapter(adapter);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
 
     }

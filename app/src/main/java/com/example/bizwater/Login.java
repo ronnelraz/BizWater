@@ -9,6 +9,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -38,6 +40,9 @@ public class Login extends AppCompatActivity {
     MaterialButton login;
     @BindViews({R.id.username,R.id.password})
     TextInputEditText[] input;
+    @BindView(R.id.rememberPassword)
+    CheckBox rememberme;
+    private String isChecked = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +60,30 @@ public class Login extends AppCompatActivity {
             finish();
         }
 
+        boolean Isrememberme = controller.getREMEMBERME().equals("false") ? false : true;
+        Log.d("isremember",Isrememberme + "");
+        if(Isrememberme){
+            input[0].setText(controller.getUSERNAME());
+            input[1].setText(controller.getPASSWORD());
+        }
+
+        rememberme.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                isChecked = "true";
+                Log.d("checked","true");
+            }
+            else{
+                isChecked = "false";
+                Log.d("checked","false");
+            }
+        });
+
 
         login.setOnClickListener(v -> {
             String getusername = input[0].getText().toString();
             String getPassword = input[1].getText().toString();
+            String getchecked = isChecked;
+
 
             if(getusername.isEmpty()){
                 input[0].requestFocus();
@@ -99,6 +124,7 @@ public class Login extends AppCompatActivity {
                             //okay
                             controller.pDialog.dismiss(); //close modal loading
                             controller.toast(R.raw.ok,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                            controller.rememberme(getusername,getPassword,getchecked);
                             controller.SETINFO(Arrays.asList(id,fname,lname,address,contact,business,email,username,"login"));
 
                             new Handler().postDelayed(() -> {

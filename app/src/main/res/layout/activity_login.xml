@@ -48,14 +48,25 @@
 
     </LinearLayout>
 
-   <LinearLayout
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/header"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/newlogo" />
 
+
+    <LinearLayout
+       android:id="@+id/headerContainer"
         android:layout_marginLeft="30dp"
        android:layout_marginRight="30dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="vertical"
-       android:layout_below="@+id/header">
+       android:layout_below="@+id/logo">
 
 
       <com.google.android.material.textfield.TextInputLayout
@@ -103,6 +114,17 @@
 
        </com.google.android.material.textfield.TextInputLayout>
 
+
+        <CheckBox
+            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rememberPassword"
+            android:textColor="#315960"
+            android:textStyle="bold"
+            android:buttonTint="#315960"
+            android:text="Remember me"/>
+
        <com.google.android.material.button.MaterialButton
            android:id="@+id/login"
            app:cornerRadius="20dp"
@@ -130,6 +152,7 @@
            tools:ignore="OnClick" />
 
    </LinearLayout>
+
 
 
 

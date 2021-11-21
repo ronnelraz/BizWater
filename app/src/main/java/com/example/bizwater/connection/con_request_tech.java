@@ -11,9 +11,10 @@ public class con_request_tech extends StringRequest {
     public static final String con = config.URL + "get_request_tech.php";
     private Map<String,String> params;
 
-    public con_request_tech(Response.Listener<String> Listener, Response.ErrorListener errorListener){
+    public con_request_tech(String id,Response.Listener<String> Listener, Response.ErrorListener errorListener){
         super(Method.POST,con,Listener,errorListener);
         params = new HashMap<>();
+        params.put("id",id);
     }
 
     @Override

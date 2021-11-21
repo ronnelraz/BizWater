@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 
+import android.view.Gravity;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
@@ -28,7 +29,7 @@ import com.example.bizwater.Model.m_simulation;
 import com.example.bizwater.adapter.Adapter_categories;
 import com.example.bizwater.adapter.Adapter_simulation;
 import com.example.bizwater.func.Func;
-
+import com.novoda.merlin.Merlin;
 
 
 import java.io.IOException;
@@ -104,16 +105,7 @@ public class Simulation extends AppCompatActivity {
         controller = new Func(this);
 
 
-      try{
-          surfaceView = findViewById(R.id.surface);
-          customViewer = new CustomViewer();
-          customViewer.loadEntity();
-          customViewer.setSurfaceView(surfaceView);
-          customViewer.loadGlb(this, "grogu", "rr");
-          customViewer.loadIndirectLight(this,"venetian_crossroads_2k");
-      }catch (Exception e){
 
-      }
 
       for(int i = 0; i < img.length; i++){
           m_simulation item = new m_simulation(
@@ -131,7 +123,18 @@ public class Simulation extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        webview.performClick();
+
+        try{
+            surfaceView = findViewById(R.id.surface);
+            customViewer = new CustomViewer();
+            customViewer.loadEntity();
+            customViewer.setSurfaceView(surfaceView);
+            customViewer.loadGlb(this, "grogu", "rr");
+            customViewer.loadIndirectLight(this,"venetian_crossroads_2k");
+        }catch (Exception e){
+
+        }
+
 
         if (Build.VERSION.SDK_INT >= 19) {
             webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
@@ -139,7 +142,7 @@ public class Simulation extends AppCompatActivity {
             webSettings.setJavaScriptEnabled(true);
             webSettings.setUseWideViewPort(true);
             webSettings.setLoadWithOverviewMode(true);
-            webview.loadUrl("http://192.168.1.36/systemwatech/");
+            webview.loadUrl("http://192.168.69.35/systemwatech/");
         }
         else {
             webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -147,14 +150,13 @@ public class Simulation extends AppCompatActivity {
             webSettings.setJavaScriptEnabled(true);
             webSettings.setUseWideViewPort(true);
             webSettings.setLoadWithOverviewMode(true);
-            webview.loadUrl("http://192.168.1.36/systemwatech/");
+            webview.loadUrl("http://192.168.69.35/systemwatech/");
         }
 
 
 
 
     }
-
 
 
 
@@ -163,12 +165,16 @@ public class Simulation extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         customViewer.onResume();
+
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+
         customViewer.onPause();
+
     }
 
     @Override

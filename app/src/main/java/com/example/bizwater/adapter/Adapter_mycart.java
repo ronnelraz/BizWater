@@ -32,6 +32,8 @@ import com.example.bizwater.Mycart;
 import com.example.bizwater.R;
 import com.example.bizwater.connection.con_product;
 import com.example.bizwater.connection.con_removeCart;
+import com.example.bizwater.connection.con_update_mycart;
+import com.example.bizwater.connection.con_update_wishlist;
 import com.example.bizwater.connection.config;
 import com.example.bizwater.func.Func;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -49,15 +51,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import ezy.ui.view.NumberStepper;
+
 public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHolder> {
     Context mContext;
     List<m_mycart> newsList;
 
-
-    private BottomSheetBehavior bottomSheetBehavior;
-    private RecyclerView.Adapter adapter;
-    private List<m_product> list;
-
+    public String getqty = "";
+    public String getsubtotal = "";
 
 
 
@@ -83,9 +84,62 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
 
 
         holder.name.setText("Item: "+getData.getName());
-        holder.price.setText("Price: ₱" +getData.getPrice());
-        holder.qty.setText("Qty: "+getData.getQty()+"x");
-        holder.subtotal.setText("Sub Total: ₱" +getData.getTotal());
+        holder.price.setText("Price: ₱" +Func.getInstance(mContext).numberformat(Float.parseFloat(getData.getPrice())));
+        holder.qty.setValue(Integer.valueOf(getData.getQty()));
+        holder.stock.setText("Stocks : " + Func.getInstance(mContext).numberformat(Float.parseFloat(getData.getStock())));
+        holder.subtotal.setText("Sub Total: ₱" + Func.getInstance(mContext).numberformat(Float.parseFloat(getData.getTotal())));
+
+        getqty = getData.getQty();
+        getsubtotal = getData.getTotal();
+
+
+
+
+        holder.qty.setOnValueChangedListener((view, value) -> {
+            int stock = Integer.parseInt(getData.getStock());
+
+
+            if(value > stock){
+                Toast.makeText(view.getRootView().getContext(), "Sorry your order Quantity is more than available Stocks", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                int price =  Integer.parseInt(getData.getPrice());
+                int newTotal = price * value;
+                holder.subtotal.setText("Sub Total : "+Func.getInstance(mContext).numberformat(Float.valueOf(String.valueOf(newTotal))));
+                Response.Listener<String> response = res-> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(res);
+                        boolean success = jsonResponse.getBoolean("success");
+
+                        if(success){
+                             new Mycart();
+//                            getqty = String.valueOf(value);
+//                            getsubtotal = String.valueOf(newTotal);
+//                            holder.subtotal.setText("Sub Total : "+Func.getInstance(mContext).numberformat(Float.valueOf(String.valueOf(newTotal))));
+                            Toast.makeText(mContext, "update quantity", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+
+                            Func.getInstance(mContext).toast(R.raw.error_con,"Something went wrong. Try again later.", Gravity.TOP|Gravity.CENTER,0,50);
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                };
+                Response.ErrorListener errorListener = error -> {
+
+                };
+                con_update_mycart get = new con_update_mycart(getData.getId(),String.valueOf(value),String.valueOf(newTotal),response,errorListener);
+                RequestQueue queue = Volley.newRequestQueue(view.getContext());
+                queue.add(get);
+//
+            }
+
+        });
+
+
         Picasso.get().load(config.IMGURL + getData.img).into(holder.item, new Callback() {
             @Override
             public void onSuccess() {
@@ -115,7 +169,6 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
 
     }
 
-
     private void removeItemList(View v, String id){
         Response.Listener<String> response = response1 -> {
             try {
@@ -124,11 +177,13 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
 
                 if(success){
                     ((Mycart)v.getContext()).loadCart();
-                    Func.getInstance(v.getContext()).toast(R.raw.ok,"Item Removed", Gravity.TOP|Gravity.CENTER,0,50);
+//                    Func.getInstance(v.getContext()).toast(R.raw.ok,"Item Removed", Gravity.TOP|Gravity.CENTER,0,50);
+                    Toast.makeText(v.getContext(), "Item Removed", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     ((Mycart)v.getContext()).loadCart();
-                    Func.getInstance(v.getContext()).toast(R.raw.error_con,"Something went wrong. Try again later.", Gravity.TOP|Gravity.CENTER,0,50);
+                    Toast.makeText(v.getContext(), "Item Removed", Toast.LENGTH_SHORT).show();
+//                    Func.getInstance(v.getContext()).toast(R.raw.error_con,"Something went wrong. Try again later.", Gravity.TOP|Gravity.CENTER,0,50);
                 }
 
 
@@ -155,9 +210,10 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
 
         public ImageView item;
         public LottieAnimationView loading;
-        public TextView name,price,qty,subtotal;
+        public TextView name,price,subtotal,stock;
         public SwipeLayout swipe;
         public LinearLayout trash;
+        public NumberStepper qty;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -168,6 +224,7 @@ public class Adapter_mycart extends RecyclerView.Adapter<Adapter_mycart.ViewHold
             qty = itemView.findViewById(R.id.qty);
             subtotal = itemView.findViewById(R.id.subtotal);
             swipe = itemView.findViewById(R.id.swipe);
+            stock = itemView.findViewById(R.id.stock);
             trash = itemView.findViewById(R.id.cancelitem);
 
 

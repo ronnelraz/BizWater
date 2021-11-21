@@ -44,7 +44,7 @@
             android:layout_below="@+id/image"
             android:text="Product Name"
             android:textColor="@color/material_blue_grey_80"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 
@@ -55,7 +55,7 @@
             android:layout_below="@id/productname"
             android:text="Product Price : "
             android:textColor="@color/material_blue_grey_80"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
@@ -65,31 +65,46 @@
             android:layout_below="@id/productprice"
             android:text="Product Stock : "
             android:textColor="@color/material_blue_grey_80"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        <ezy.ui.view.NumberStepper
             android:id="@+id/qty"
+            style="@style/NumberStepper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_below="@id/productstock"
-            app:backGroundColor="#8DEBF1F4"
-            app:backgroundDrawable="@drawable/rounded"
-            app:initialNumber="1"
-            app:textColor="@color/material_blue_grey_90"
-            app:textSize="9sp" />
+            app:nsMaxValue="999999"
+            app:nsMinValue="1"
+            app:nsStep="1"
+            app:nsValue="1" />
+
+
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/addtocart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/qty"
             android:backgroundTint="#0288D1"
             android:text="Add to cart"
+            android:textSize="11sp"
             app:cornerRadius="10dp"
             app:icon="@drawable/addcart"
-            android:id="@+id/addtocart"
+            app:iconGravity="textStart" />
+
+        <com.google.android.material.button.MaterialButton
+            android:visibility="gone"
+            android:id="@+id/wishlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/qty"
+            android:backgroundTint="#0288D1"
+            android:text="Add wishlist"
+            android:textSize="11sp"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/ic_baseline_favorite_24"
             app:iconGravity="textStart" />
 
 

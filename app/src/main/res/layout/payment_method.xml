@@ -78,6 +78,34 @@
                 android:layout_height="wrap_content"
                 android:text="Cash on Delivery"/>
 
+            <LinearLayout
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:id="@+id/confirmAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Delivery Address"/>
+
+                <EditText
+                    android:id="@+id/address"
+                    android:backgroundTint="#E4EDF3"
+                    android:background="@drawable/rounded"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:minLines="4"
+                    android:gravity="top|start"
+                    android:maxLines="10"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
             <RadioButton
                 android:drawableTint="@color/purple_500"
                 android:drawableRight="@drawable/resource_package"

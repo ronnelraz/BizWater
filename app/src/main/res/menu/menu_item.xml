@@ -16,6 +16,13 @@
             android:iconTint="#0288D1"
             app:showAsAction="never"/>
 
+        <item
+            android:id="@+id/wishlist"
+            android:title="Wishlist"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:iconTint="#0288D1"
+            app:showAsAction="never"/>
+
 
         <item
             android:id="@+id/support"

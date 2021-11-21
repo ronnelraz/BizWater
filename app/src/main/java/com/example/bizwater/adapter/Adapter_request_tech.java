@@ -28,6 +28,7 @@ import com.example.bizwater.View_request;
 import com.example.bizwater.connection.con_cancelled_request;
 import com.example.bizwater.connection.con_removeCart;
 import com.example.bizwater.connection.config;
+import com.example.bizwater.fragments.Tab1;
 import com.example.bizwater.func.Func;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.squareup.picasso.Callback;
@@ -41,12 +42,6 @@ import java.util.List;
 public class Adapter_request_tech extends RecyclerView.Adapter<Adapter_request_tech.ViewHolder> {
     Context mContext;
     List<m_request_support> newsList;
-
-
-    private BottomSheetBehavior bottomSheetBehavior;
-    private RecyclerView.Adapter adapter;
-    private List<m_product> list;
-
 
 
 
@@ -80,10 +75,12 @@ public class Adapter_request_tech extends RecyclerView.Adapter<Adapter_request_t
             holder.status.setTextColor(Color.parseColor("#e67e22"));
         }
         else if(getData.getFlag().equals("Y")){
+            holder.swipe.setSwipeEnabled(false);
             holder.status.setText("Accepted");
             holder.status.setTextColor(Color.parseColor("#27ae60"));
         }
         else{
+            holder.swipe.setSwipeEnabled(false);
             holder.status.setText("Cancelled");
             holder.status.setTextColor(Color.parseColor("#e74c3c"));
         }
@@ -125,11 +122,13 @@ public class Adapter_request_tech extends RecyclerView.Adapter<Adapter_request_t
                 boolean success = jsonResponse.getBoolean("success");
 
                 if(success){
-                    ((View_request)v.getContext()).loadquest();
+//                    ((View_request)v.getContext()).loadquest();
+                    Tab1.loadquest(v.getContext());
                     Func.getInstance(v.getContext()).toast(R.raw.ok,"Cancelled Request", Gravity.TOP|Gravity.CENTER,0,50);
                 }
                 else{
-                    ((View_request)v.getContext()).loadquest();
+//                    ((View_request)v.getContext()).loadquest();
+                    Tab1.loadquest(v.getContext());
                     Func.getInstance(v.getContext()).toast(R.raw.error_con,"Something went wrong. Try again later.", Gravity.TOP|Gravity.CENTER,0,50);
                 }
 

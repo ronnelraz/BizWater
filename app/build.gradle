@@ -73,4 +73,11 @@ dependencies {
     implementation 'com.google.android.filament:filament-android:1.9.9'
     implementation 'com.google.android.filament:filament-utils-android:1.9.9'
     implementation 'com.google.android.filament:gltfio-android:1.9.9'
+    implementation 'com.github.czy1121:numberstepper:1.2.0'
+//    implementation "com.github.budioktaviyan:android-stepper:1.0.5"
+//    implementation 'com.github.badoualy:stepper-indicator:1.0.7'
+//    implementation 'com.github.saleniuk:stepper-indicator:2.0.0-alpha'
+    implementation 'com.shuhart.stepview:stepview:1.2.6'
+
+
 }

@@ -2,15 +2,16 @@ package com.example.bizwater.Model;
 
 public class m_mycart {
 
-    public String id,name,price,qty,total,img;
+    public String id,name,price,qty,total,img,stock;
 
-    public m_mycart(String id, String name, String price, String qty, String total, String img) {
+    public m_mycart(String id, String name, String price, String qty, String total, String img, String stock) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.qty = qty;
         this.total = total;
         this.img = img;
+        this.stock = stock;
     }
 
     public String getId() {
@@ -59,5 +60,13 @@ public class m_mycart {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 }

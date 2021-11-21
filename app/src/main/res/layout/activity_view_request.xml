@@ -21,26 +21,22 @@
         app:cornerRadius="20dp"
         app:icon="@drawable/icons8_back" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:layout_below="@+id/back"
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/data"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/back"
-        tools:listitem="@layout/request_tech_list"/>
+        android:layout_below="@+id/tabs"/>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loading"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="340dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/loading"
-        app:lottie_renderMode="automatic" />
+
+
 
 
 

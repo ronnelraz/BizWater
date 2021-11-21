@@ -7,14 +7,17 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:paddingLeft="10dp"
         android:id="@+id/icon"
-        android:layout_centerInParent="true"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:src="@drawable/icon"/>
+        android:layout_centerInParent="true"
+        android:src="@drawable/newlogo"
+        android:scaleType="fitCenter"/>
 
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

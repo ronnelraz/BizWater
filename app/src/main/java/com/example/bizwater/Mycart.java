@@ -10,12 +10,14 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -59,13 +61,17 @@ public class Mycart extends AppCompatActivity {
     LottieAnimationView loading;
     private String transactionID = "";
     @BindView(R.id.total)
-    TextView Total;
+    public TextView Total;
 
     @BindView(R.id.back)
     MaterialButton back;
     @BindView(R.id.ordernow) MaterialButton ordernow;
     private BottomSheetBehavior bottomSheetBehavior;
     private String deliveryType = null;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +120,8 @@ public class Mycart extends AppCompatActivity {
 
             RadioGroup paymethod = view.findViewById(R.id.paymethod);
             MaterialButton ok = view.findViewById(R.id.ok);
+            LinearLayout confirmAddresslayout = view.findViewById(R.id.confirmAddress);
+            EditText address = view.findViewById(R.id.address);
             paymethod.setOnCheckedChangeListener((radioGroup, i) -> {
                 if(radioGroup.getCheckedRadioButtonId() == -1){
                     ok.setEnabled(false);
@@ -122,59 +130,128 @@ public class Mycart extends AppCompatActivity {
                     RadioButton type = view.findViewById(i);
                     deliveryType = type.getText().toString();
                     ok.setEnabled(true);
+
+                    if(type.getText().equals("Cash on Delivery")){
+                        confirmAddresslayout.setVisibility(View.VISIBLE);
+                        Toast.makeText(view.getContext(), "Please Confirm Delivery Address", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        confirmAddresslayout.setVisibility(View.GONE);
+                        address.setText("");
+                    }
                 }
+
             });
+
+
 
             ok.setOnClickListener(v1 -> {
                 String getPaymentMethod = deliveryType;
                 String getPayMethod = getPaymentMethod.equals("Cash on Delivery") ? "Cash" : "Pick Up";
 
-                new SweetAlertDialog(v1.getContext(), SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Confirmation")
-                        .setContentText("Before you submit your order, Please make sure your payment method is correct.")
-                        .setConfirmText("OK")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                Response.Listener<String> response = response1 -> {
-                                    try {
-                                        JSONObject jsonResponse = new JSONObject(response1);
-                                        boolean success = jsonResponse.getBoolean("success");
-                                        String msg = jsonResponse.getString("message");
+                if(getPayMethod.equals("Cash")){
+                    String getAddress = address.getText().toString();
+                    if(getAddress.isEmpty()){
+                        Toast.makeText(v1.getContext(), "Please Enter your Delivery Address", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        new SweetAlertDialog(v1.getContext(), SweetAlertDialog.WARNING_TYPE)
+                                .setTitleText("Confirmation")
+                                .setContentText("Before you submit your order, Please make sure your payment method is correct.")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        Response.Listener<String> response = response1 -> {
+                                            try {
+                                                JSONObject jsonResponse = new JSONObject(response1);
+                                                boolean success = jsonResponse.getBoolean("success");
+                                                String msg = jsonResponse.getString("message");
 
-                                        if(success){
-                                            sDialog.dismissWithAnimation();
-                                            Func.intent(Home.class,v.getContext());
-                                            finish();
-                                            controller.toast(R.raw.ok,msg,Gravity.TOP|Gravity.CENTER,0,50);
-                                        }
-                                        else{
-                                            Func.intent(Home.class,v.getContext());
-                                            finish();
-                                            controller.toast(R.raw.error_con,msg,Gravity.TOP|Gravity.CENTER,0,50);
-                                        }
+                                                if(success){
+                                                    sDialog.dismissWithAnimation();
+                                                    Func.intent(Home.class,v.getContext());
+                                                    finish();
+                                                    controller.toast(R.raw.ok,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                                                }
+                                                else{
+                                                    Func.intent(Home.class,v.getContext());
+                                                    finish();
+                                                    controller.toast(R.raw.error_con,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                                                }
 
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        };
+                                        Response.ErrorListener errorListener = error -> {
+                                            String result = controller.Errorvolley(error);
+                                            controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
+                                        };
+                                        con_orderSubmit get = new con_orderSubmit(transactionID,controller.USERID(),getPayMethod,getAddress,response,errorListener);
+                                        RequestQueue queue = Volley.newRequestQueue(Mycart.this);
+                                        queue.add(get);
+
                                     }
-                                };
-                                Response.ErrorListener errorListener = error -> {
-                                    String result = controller.Errorvolley(error);
-                                    controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
-                                };
-                                con_orderSubmit get = new con_orderSubmit(transactionID,controller.USERID(),getPayMethod,response,errorListener);
-                                RequestQueue queue = Volley.newRequestQueue(Mycart.this);
-                                queue.add(get);
+                                })
+                                .setCancelButton("CANCEL", new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        sDialog.dismissWithAnimation();
+                                    }
+                                })
+                                .show();
+                    }
+                }
+                else{
+                    new SweetAlertDialog(v1.getContext(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Confirmation")
+                            .setContentText("Before you submit your order, Please make sure your payment method is correct.")
+                            .setConfirmText("OK")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    Response.Listener<String> response = response1 -> {
+                                        try {
+                                            JSONObject jsonResponse = new JSONObject(response1);
+                                            boolean success = jsonResponse.getBoolean("success");
+                                            String msg = jsonResponse.getString("message");
 
-                            }
-                        })
-                        .setCancelButton("CANCEL", new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                sDialog.dismissWithAnimation();
-                            }
-                        })
-                        .show();
+                                            if(success){
+                                                sDialog.dismissWithAnimation();
+                                                Func.intent(Home.class,v.getContext());
+                                                finish();
+                                                controller.toast(R.raw.ok,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                                            }
+                                            else{
+                                                Func.intent(Home.class,v.getContext());
+                                                finish();
+                                                controller.toast(R.raw.error_con,msg,Gravity.TOP|Gravity.CENTER,0,50);
+                                            }
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    };
+                                    Response.ErrorListener errorListener = error -> {
+                                        String result = controller.Errorvolley(error);
+                                        controller.toast(R.raw.error_con,result,Gravity.TOP|Gravity.CENTER,0,50);
+                                    };
+                                    con_orderSubmit get = new con_orderSubmit(transactionID,controller.USERID(),getPayMethod,"",response,errorListener);
+                                    RequestQueue queue = Volley.newRequestQueue(Mycart.this);
+                                    queue.add(get);
+
+                                }
+                            })
+                            .setCancelButton("CANCEL", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                }
+                            })
+                            .show();
+                }
+
 
             });
 
@@ -184,6 +261,14 @@ public class Mycart extends AppCompatActivity {
             bottomSheetDialog.show();
 
         });
+
+//        realtime update data
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, 4000);
+               loadCart();
+            }
+        }, 4000);
     }
 
     public static int getScreenHeight() {
@@ -206,15 +291,17 @@ public class Mycart extends AppCompatActivity {
                 try {
                     JSONObject jsonResponse = new JSONObject(response1);
                     boolean success = jsonResponse.getBoolean("success");
-                    Total.setText("Total Order: ₱" +jsonResponse.getString("totalOrder"));
+                    String total = jsonResponse.getString("totalOrder");
                     transactionID = jsonResponse.getString("trasactionID");
                     JSONArray array = jsonResponse.getJSONArray("data");
 
 
 
                     if(success){
+//                    Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
                         ordernow.setEnabled(true);
                         loading.setVisibility(View.GONE);
+                        Total.setText("Total Order: ₱" + total);
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject object = array.getJSONObject(i);
                             m_mycart item = new m_mycart(
@@ -223,7 +310,8 @@ public class Mycart extends AppCompatActivity {
                                     object.getString("price"),
                                     object.getString("qty"),
                                     object.getString("total"),
-                                    object.getString("img")
+                                    object.getString("img"),
+                                    object.getString("stock")
                             );
 
                             list.add(item);
@@ -250,10 +338,10 @@ public class Mycart extends AppCompatActivity {
                 no_connection();
             };
             con_getmycart get = new con_getmycart(controller.USERID(),response,errorListener);
-            RequestQueue queue = Volley.newRequestQueue(Mycart.this);
+            RequestQueue queue = Volley.newRequestQueue(this);
             queue.add(get);
         }catch (Exception e){
-            Log.d("Error",e.toString());
+
         }
     }
 

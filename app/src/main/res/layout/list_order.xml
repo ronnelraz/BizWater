@@ -15,20 +15,22 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/transaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:text="Transaction No."
-            android:textSize="18sp"
-            android:fontFamily="@font/poppins_light"/>
+            android:textSize="16sp" />
 
         <TextView
+            android:textStyle="bold"
             android:layout_below="@+id/transaction"
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Order Date"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:fontFamily="@font/poppins_light"/>
 
 

@@ -42,17 +42,20 @@
 
 
     <EditText
-        android:inputType="text"
-        android:singleLine="true"
-        android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/icons8_search_2"
         android:id="@+id/search"
-        android:hint="Search Transaction No."
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@+id/ol"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/rounded"
-        android:layout_below="@+id/ol"/>
+        android:drawableLeft="@drawable/icons8_search_2"
+        android:drawablePadding="10dp"
+        android:hint="Search Transaction No."
+        android:inputType="text"
+        android:singleLine="true" />
 
 
     <com.airbnb.lottie.LottieAnimationView

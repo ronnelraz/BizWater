@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,9 @@ public class Func {
     private static final String EMAIL = "EMAIL";
     private static final String USERNAME = "USERNAME";
     private static final String LOGIN = "false";
+    private static final String REMEMBERME = "REMEMBERME";
+    private static final String REMEMBERUSERNAME = "REMEMBERUSERNAME";
+    private static final String REMEMBERPASSWORD = "REMEMBERPASSWORD";
 
 
 
@@ -61,6 +65,31 @@ public class Func {
             app = new Func(context);
         }
         return app;
+    }
+
+    public boolean rememberme(String username,String password,String ischeck){
+        sharedPreferences = cont.getSharedPreferences(DATA,Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString(REMEMBERUSERNAME,username);
+        editor.putString(REMEMBERPASSWORD,password);
+        editor.putString(REMEMBERME,ischeck);
+        editor.apply();
+        return true;
+    }
+
+    public String getUSERNAME(){
+        sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(REMEMBERUSERNAME,"");
+    }
+
+    public String getPASSWORD(){
+        sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(REMEMBERPASSWORD,"");
+    }
+
+    public String getREMEMBERME(){
+        sharedPreferences = cont.getSharedPreferences(DATA, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(REMEMBERME,"false");
     }
 
     public boolean SETINFO(List<String> data){
@@ -92,7 +121,7 @@ public class Func {
 //        DecimalFormat formatter = new DecimalFormat("#,###,###");
 //        return formatter.format(number);
 
-        NumberFormat formatter = new DecimalFormat("#0.00");
+        NumberFormat formatter = new DecimalFormat("#,###,###"); //#0.00
         return formatter.format(number);
     }
 

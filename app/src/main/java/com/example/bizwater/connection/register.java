@@ -11,7 +11,7 @@ public class register extends StringRequest {
     public static final String con = config.URL + "registerUser.php";
     private Map<String,String> params;
 
-    public register(String firstname,String lastname,String address,String number,String business,String email,String username,String status,String password,Response.Listener<String> Listener, Response.ErrorListener errorListener){
+    public register(String firstname,String lastname,String address,String number,String business,String email,String username,String status,String password,String province,String muni,String brgy,Response.Listener<String> Listener, Response.ErrorListener errorListener){
         super(Method.POST,con,Listener,errorListener);
         params = new HashMap<>();
         params.put("firstname",firstname);
@@ -23,6 +23,9 @@ public class register extends StringRequest {
         params.put("username",username);
         params.put("status",status);
         params.put("password",password);
+        params.put("province",province);
+        params.put("muni",muni);
+        params.put("brgy",brgy);
     }
 
     @Override

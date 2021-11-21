@@ -84,6 +84,7 @@
                     android:text="Order Summary"/>
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/transid"
                     android:fontFamily="@font/poppins_light"
                     android:drawablePadding="5dp"
@@ -98,6 +99,7 @@
 
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/total"
                     android:fontFamily="@font/poppins_light"
                     android:drawablePadding="5dp"

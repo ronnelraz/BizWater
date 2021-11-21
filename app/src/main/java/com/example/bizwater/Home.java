@@ -205,6 +205,9 @@ public class Home extends AppCompatActivity {
                 case R.id.MyOrder:
                     Func.intent(MyOrder.class,Home.this);
                     break;
+                case R.id.wishlist:
+                    Func.intent(Wishlist.class,Home.this);
+                    break;
                 case  R.id.Simulation:
                     Func.intent(Simulation.class,Home.this);
                     break;

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Bizwater</string>
     <string name="new_user_register_now"><u>New user? Register Now</u></string>
+
+    <string-array name="stepLabels">
+        <item>Basic Info.</item>
+        <item>Contact Info</item>
+        <item>business Info.</item>
+        <item>Login Details</item>
+    </string-array>
 </resources>
