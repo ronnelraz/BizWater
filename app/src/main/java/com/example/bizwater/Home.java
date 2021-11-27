@@ -222,7 +222,7 @@ public class Home extends AppCompatActivity {
                             .setConfirmClickListener(sDialog -> {
                                 sDialog.dismissWithAnimation();
                                 controller.SETLOGOUT("wala");
-                                Func.intent(Login.class,getApplicationContext());
+                                Func.intent(Login.class,Home.this);
                                 finish();
                             })
                             .setCancelButton("No", sDialog -> sDialog.dismissWithAnimation())
