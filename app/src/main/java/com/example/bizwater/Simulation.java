@@ -136,22 +136,22 @@ public class Simulation extends AppCompatActivity {
         }
 
 
-        if (Build.VERSION.SDK_INT >= 19) {
-            webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            WebSettings webSettings = webview.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webSettings.setUseWideViewPort(true);
-            webSettings.setLoadWithOverviewMode(true);
-            webview.loadUrl("http://192.168.69.35/systemwatech/");
-        }
-        else {
-            webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-            WebSettings webSettings = webview.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webSettings.setUseWideViewPort(true);
-            webSettings.setLoadWithOverviewMode(true);
-            webview.loadUrl("http://192.168.69.35/systemwatech/");
-        }
+//        if (Build.VERSION.SDK_INT >= 19) {
+//            webview.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+//            WebSettings webSettings = webview.getSettings();
+//            webSettings.setJavaScriptEnabled(true);
+//            webSettings.setUseWideViewPort(true);
+//            webSettings.setLoadWithOverviewMode(true);
+//            webview.loadUrl("http://192.168.1.36/systemwatech/");
+//        }
+//        else {
+//            webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+//            WebSettings webSettings = webview.getSettings();
+//            webSettings.setJavaScriptEnabled(true);
+//            webSettings.setUseWideViewPort(true);
+//            webSettings.setLoadWithOverviewMode(true);
+//            webview.loadUrl("http://192.168.1.36/systemwatech/");
+//        }
 
 
 
