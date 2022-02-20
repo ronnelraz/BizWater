@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Bizwater</string>
+    <string name="new_user_register_now"><u>New user? Register Now</u></string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+
+    <string-array name="stepLabels">
+        <item>Basic Info</item>
+        <item>Contact Info</item>
+        <item>Business Info</item>
+        <item>Login Details</item>
+    </string-array>
+    <string name="linktosite">
+        <a href="https://www.facebook.com/bizwater">Bizwater Technologies Facebook Page</a>
+    </string>
+</resources>

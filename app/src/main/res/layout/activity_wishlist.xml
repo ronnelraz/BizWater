@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="false"
+    android:layout_height="match_parent"
+    tools:context=".Wishlist">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back"
+        android:onClick="back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:icon="@drawable/icons8_back"
+        android:text="Back"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:cornerRadius="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_below="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_light"
+            android:text="Here's your wishlist"
+            android:textAlignment="center"
+            android:textColor="@color/material_blue_grey_80"
+            android:textSize="30sp" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/wishlist"
+            app:lottie_renderMode="automatic" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/search"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded"
+        android:backgroundTint="#CFE6F3"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
+        android:drawableLeft="@drawable/icons8_search_2"
+        android:drawablePadding="5dp"
+        android:hint="Search wishlist" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/data"
+        android:layout_below="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/wishlist_list"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="450dp"
+        android:id="@+id/loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic" />
+
+
+</RelativeLayout>

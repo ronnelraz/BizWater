@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyOrder">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/icons8_back"
+        android:text="Go back"
+        app:cornerRadius="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/back"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:onClick="back"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loadings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/back"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/delivery"
+        app:lottie_renderMode="automatic" />
+
+
+    <TextView
+        android:id="@+id/ol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loadings"
+        android:layout_marginLeft="20dp"
+        android:text="Here's your order list"
+        android:textSize="25sp" />
+
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ol"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded"
+        android:backgroundTint="#CFE6F3"
+        android:fontFamily="@font/poppins_light"
+        android:drawableLeft="@drawable/icons8_search_2"
+        android:drawablePadding="10dp"
+        android:hint="Search Transaction No."
+        android:inputType="text"
+        android:singleLine="true" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="350dp"
+        android:id="@+id/loading"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_renderMode="automatic" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search"
+        tools:listitem="@layout/list_order"/>
+
+</RelativeLayout>

@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:onClick="back"
+            app:cornerRadius="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Back"
+            app:icon="@drawable/icons8_back"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_light"
+                android:text="Here's your first step with us!"
+                android:textAlignment="center"
+                android:textColor="@color/material_blue_grey_80"
+                android:textSize="25sp" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_weight="1"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/adduser"
+                app:lottie_renderMode="automatic" />
+
+
+        </LinearLayout>
+
+
+        <com.shuhart.stepview.StepView
+            android:id="@+id/step_view"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:sv_selectedCircleColor="#0288D1"
+            app:sv_selectedTextColor="#0288D1"
+            app:sv_steps="@array/stepLabels"
+            app:sv_stepLineWidth="1dp"
+            app:sv_nextTextColor="@color/material_blue_grey_80"
+            app:sv_nextStepLineColor="#0288D1"
+            app:sv_doneCircleColor="#689F38"
+            app:sv_doneStepLineColor="#689F38"
+            app:sv_doneCircleRadius="12dp"
+            app:sv_selectedCircleRadius="12dp"
+            app:sv_selectedStepNumberColor="@color/button_text_color"
+            app:sv_stepViewStyle="@style/StepView"
+            app:sv_doneStepMarkColor="#FFFFFF"
+            app:sv_doneTextColor="#689F38"
+            app:sv_stepNumberTextSize="12sp"
+
+            app:sv_stepsNumber="4"
+            app:sv_textSize="9sp"
+            app:sv_animationType="Line"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/con1">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="First Name"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/icons8_user_male"
+                    android:id="@+id/firstname"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="Last Name"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/icons8_user_male"
+                    android:id="@+id/lastname"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select your status"
+                android:fontFamily="@font/poppins_light"/>
+            <Spinner
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#CFE6F3"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/basic_nextbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_margin="10dp"
+                android:layout_gravity="right"
+                app:icon="@drawable/next"
+                app:iconGravity="end"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:cornerRadius="20dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/con2">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="Email Address"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:drawableLeft="@drawable/icons8_envelope"
+                    android:drawablePadding="10dp"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="Mobile Number"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/icons8_touchscreen"
+                    android:id="@+id/mobilenumber"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/contact_previousbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/previous"
+                    app:iconGravity="start"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="20dp"/>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/contact_nextbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/next"
+                    app:iconGravity="end"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="20dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/con3">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="Name of Business"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/icons8_department_1"
+                    android:id="@+id/business"/>
+
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Province"/>
+
+                <TextView
+                    android:id="@+id/province"
+                    android:text="Select Province"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center|left"
+                    android:textSize="15sp"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:drawableRight="@drawable/icons8_expand_arrow"
+                    android:paddingRight="20dp"/>
+
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Municipality/City"/>
+
+                <TextView
+                    android:id="@+id/muni"
+                    android:text="Select Municipality/City"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center|left"
+                    android:textSize="15sp"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:drawableRight="@drawable/icons8_expand_arrow"
+                    android:paddingRight="20dp"/>
+
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Barangay"/>
+
+                <TextView
+                    android:id="@+id/brgy"
+                    android:text="Select Barangay"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center|left"
+                    android:textSize="15sp"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:drawableRight="@drawable/icons8_expand_arrow"
+                    android:paddingRight="20dp"/>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintEnabled="true"
+                    android:hint="Address"
+                    app:boxBackgroundMode="none">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="#CFE6F3"
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_height="60dp"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/icons8_map_pinpoint"
+                        android:id="@+id/address"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/business_previousbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/previous"
+                    app:iconGravity="start"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="20dp"/>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/businerss_nextbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/next"
+                    app:iconGravity="end"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="20dp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/con4">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="true"
+                android:hint="User Name"
+                app:boxBackgroundMode="none">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/icons8_user_male"
+                    android:id="@+id/username"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordlayout"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                app:startIconDrawable="@drawable/icons8_lock_3"
+                app:hintAnimationEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    tools:text="Password"
+                    android:hint="Password"
+                    android:drawableLeft="@drawable/icons8_lock_3"
+                    android:id="@+id/password"
+                    android:drawablePadding="1dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cpasswordlayout"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                app:startIconDrawable="@drawable/icons8_lock_3"
+                app:hintAnimationEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="60dp"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    tools:text="Confirm Password"
+                    android:hint="Confirm Password"
+                    android:drawableLeft="@drawable/icons8_lock_3"
+                    android:id="@+id/cpassword"
+                    android:drawablePadding="1dp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/login_previousbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:layout_margin="10dp"
+                    app:icon="@drawable/previous"
+                    app:iconGravity="start"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    app:cornerRadius="20dp"/>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/register"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="#50ADBD"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    app:iconSize="15dp"
+                    app:iconGravity="textStart"
+                    app:icon="@drawable/icons8_ok_1" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

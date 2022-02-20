@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".profile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="20dp"
+        android:background="#3A9BDC">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:onClick="back"
+            android:text="Go back"
+            android:textColor="@color/white"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/back_arrow"/>
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icons8_male_user_1" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/profile_image"
+        android:fontFamily="@font/poppins_light"
+        android:includeFontPadding="false"
+        android:text="Emilinda Alejandro"
+        android:textColor="#fff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/profile_image"
+        android:includeFontPadding="false"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_light"
+        android:text="emilinda_alejandro"
+        android:textSize="14sp" />
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-100dp"
+        android:layout_width="match_parent"
+        android:padding="20dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="#3A9BDC"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/settings"/>
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/total_request"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="$123"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/request"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/total_request"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Total Request"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="125dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            app:cardBackgroundColor="#3A9BDC"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:padding="5dp">
+
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/money"/>
+
+                <TextView
+                    android:fontFamily="@font/poppins_light"
+                    android:id="@+id/total_orders"
+                    android:includeFontPadding="false"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="$123"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/orders"
+                    android:includeFontPadding="false"
+                    android:layout_below="@id/total_orders"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Total Orders"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_light"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="true"
+            android:hint="First Name"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#CFE6F3"
+                android:fontFamily="@font/poppins_light"
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icons8_user_male"
+                android:id="@+id/firstname"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="true"
+            android:hint="Email Address"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#CFE6F3"
+                android:fontFamily="@font/poppins_light"
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icons8_envelope"
+                android:id="@+id/emailaddress"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="true"
+            android:hint="Phone Number"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#CFE6F3"
+                android:fontFamily="@font/poppins_light"
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icons8_user_male"
+                android:id="@+id/mobilenumber"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="true"
+            android:hint="Password"
+            app:boxBackgroundMode="none">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#CFE6F3"
+                android:fontFamily="@font/poppins_light"
+                android:layout_height="55dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@drawable/icons8_lock_3"
+                android:id="@+id/password"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Update"
+        android:onClick="updateinfo"/>
+
+</LinearLayout>

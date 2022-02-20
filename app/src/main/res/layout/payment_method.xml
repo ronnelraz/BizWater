@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.bizwater.DisallowInterceptView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="@color/button_text_color">
+
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/headercontroller"
+            android:layout_marginTop="-15dp"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/button_text_color"
+            android:layout_width="match_parent"
+            app:cardElevation="4dp"
+            app:cardMaxElevation="4dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center|top"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icons8_horizontal_line"
+                android:backgroundTint="@color/black"/>
+
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:drawablePadding="5dp"
+                    android:gravity="center|left"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Select Payment Method"/>
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <RadioGroup
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/paymethod">
+
+
+            <RadioButton
+                android:drawableTint="@color/purple_500"
+                android:drawableRight="@drawable/icons8_money"
+                android:id="@+id/cash"
+                android:fontFamily="@font/poppins_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cash on Delivery"/>
+
+            <LinearLayout
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:id="@+id/confirmAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/poppins_light"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Delivery Address"/>
+
+                <EditText
+                    android:id="@+id/address"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#CFE6F3"
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:fontFamily="@font/poppins_light"
+                    android:minLines="4"
+                    android:gravity="top|start"
+                    android:maxLines="10"
+                    android:hint="Please Enter Complete Address and Landmark"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:drawableTint="@color/purple_500"
+                android:drawableRight="@drawable/resource_package"
+                android:id="@+id/Pickup"
+                android:fontFamily="@font/poppins_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick Up"/>
+
+        </RadioGroup>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="15dp"
+            android:text="OK"
+            android:id="@+id/ok"
+            android:enabled="false"
+            app:iconGravity="textStart"
+            app:cornerRadius="10dp"
+            android:textSize="18sp"
+            android:foreground="?attr/selectableItemBackground"
+            android:backgroundTint="#2059AAFB"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+</com.example.bizwater.DisallowInterceptView>

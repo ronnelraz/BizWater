@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/circle.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/icons8_cancel_subscription.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/icons8_data_pending.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/icons8_info.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/icons8_name.xml" value="0.26615384615384613" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/icons8_waste.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/okok.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/resource_package.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/rounded.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/rounded_corners_bottom.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/drawable/stepperok.xml" value="0.2703125" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_forgetpassword.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_my_order.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_mycart.xml" value="0.264" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_simulation.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_tech_support.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_view_request.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/activity_wishlist.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/bottomsheet_items.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/bottomsheet_order_details.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/category_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/custom_listview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/custom_spinner.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/custom_toast.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/item_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/list_order.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/list_order_details.xml" value="0.4" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/list_support.xml" value="0.264" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/modal_request.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/navigation_header.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/number_picker_custom_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/payment_method.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/pending_order.xml" value="0.264" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/request_tech_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/simulation_item.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/tab1_accepted.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/tab1_pending.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/tab2_accepted.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/tab3_cancelled.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/view_model_title.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/layout/wishlist_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/CPF Nigs/Desktop/Bizwater/app/src/main/res/menu/menu_item.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
